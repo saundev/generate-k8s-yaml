@@ -2,71 +2,11 @@
 ###############
 ### SaunDev ###
 ###############
-### Generate Kubernetes YAML files for all resources in all namespaces, for all namespaced resources
-### cluster-wide resources - non namespaced (kubectl api-resources). Note ComponentStatus (cs) is deprecated and removed from clusterObject array.
-namespaceObjects=(
-  app
-  appproj
-  appset
-  cj
-  cm
-  controllerrevisions
-  deploy
-  ds
-  endpointslices
-  event
-  hpa
-  ing
-  jobs
-  leases
-  limits
-  localsubjectaccessreviews
-  netpol
-  pdb
-  pod
-  podtemplates
-  pvc
-  quota
-  rc
-  rolebindings
-  roles
-  rs
-  sa
-  secrets
-  sts
-  svc
-)
-
-clusterObjects=(
-  selfsubjectreviews
-  tokenreviews
-  selfsubjectaccessreviews
-  selfsubjectrulesreviews
-  subjectaccessreviews
-  csr
-  flowschemas
-  prioritylevelconfigurations
-  ingressclasses
-  ip
-  servicecidrs
-  runtimeclasses
-  clusterrolebindings
-  clusterroles
-  pc
-  csidrivers
-  csinodes
-  sc
-  volumeattachments
-  mutatingwebhookconfigurations
-  validatingadmissionpolicies
-  validatingadmissionpolicybindings
-  validatingwebhookconfigurations
-  crd
-  apiservices
-  ns
-  node
-  pv
-)
+### Generate Kubernetes YAML files for all resources in all namespaces & cluster-wide resources.
+### Note: ComponentStatus (cs) is deprecated and removed from clusterObject array.
+### Suitable for Bash Version 3.0+ (Note associative arrays on Bash Version 4.0+ could combine array / map with name and type).
+namespaceObjects=(app appproj appset cj cm controllerrevisions deploy ds endpointslices event hpa ing jobs leases limits localsubjectaccessreviews netpol pdb pod podtemplates pvc quota rc rolebindings roles rs sa secrets sts svc)
+clusterObjects=(apiservices clusterrolebindings clusterroles crd csidrivers csinodes csr flowschemas ingressclasses ip mutatingwebhookconfigurations node ns pc prioritylevelconfigurations pv runtimeclasses sc selfsubjectaccessreviews selfsubjectreviews selfsubjectrulesreviews servicecidrs subjectaccessreviews tokenreviews validatingadmissionpolicies validatingadmissionpolicybindings validatingwebhookconfigurations volumeattachments)
 
 ensure_k8s_alias() {
   if ! command -v k &> /dev/null; then
